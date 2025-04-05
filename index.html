@@ -5,14 +5,38 @@
   <link rel="icon" href="data:,">
   <title>Rock, Paper, Scissors</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Emoji button styles */
+    .buttons button {
+      width: 80px;
+      height: 80px;
+      font-size: 40px;
+      padding: 0;
+      border-radius: 50%;
+      border: 3px solid #4CAF50;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin: 0 15px;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.1);
+      background: #f0f0f0;
+    }
+
+    .buttons button span {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <div class="game-container">
     <h1>Rock Paper Scissors</h1>
     <div class="buttons">
-      <button id="rock">Rock</button>
-      <button id="paper">Paper</button>
-      <button id="scissors">Scissors</button>
+      <button id="rock"><span>Rock</span>✊</button>
+      <button id="paper"><span>Paper</span>✋</button>
+      <button id="scissors"><span>Scissors</span>✌</button>
     </div>
     <div id="results" class="results"></div>
     <div id="score" class="score"></div>

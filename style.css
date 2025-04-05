@@ -1,39 +1,82 @@
-body {
-    font-family: Arial, sans-serif;
+  body {
+    font-family: monospace;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background-color: black;
+    /* Grid background */
+    background-image:
+      linear-gradient(rgba(190, 239, 0, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(190, 239, 0, 0.3) 1px, transparent 1px);
+    background-size: 100px 100px;
+    /* Animation */
+    animation: gridPulse 5s infinite alternate;
+  }
+
+  @keyframes gridPulse {
+    0% {
+      opacity: 0.7;
+      background-image:
+        linear-gradient(rgba(190, 239, 0, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(190, 239, 0, 0.3) 1px, transparent 1px);
+    }
+    100% {
+      opacity: 1;
+      background-image:
+        linear-gradient(rgba(190, 239, 0, 0.6) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(190, 239, 0, 0.6) 1px, transparent 1px);
+    }
+  }
+
+  h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 599;
+    font-size: 2.5rem;
+    color:rgb(241, 250, 159);
+    margin-bottom: 40px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
   }
 
   .game-container {
     text-align: center;
-    background: white;
+    background: #1d1d22;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    /* glow effect */
+    border: 8px solid #beef00;
+    box-shadow: 0 0 18px #beef00;
   }
 
   .buttons {
     margin: 20px 0;
+    display: flex;
+    justify-content: center;
   }
 
-  button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #4CAF50;
+  .buttons button {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    padding: 0;
+    border-radius: 50%;
+    /* New border and background */
+    border: 3px solid #beef00; /* Neon yellow */
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
     color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: all 0.2s;
+    margin: 0 15px;
+    /* Text/emoji color */
+    color: #beef00; /* Neon yellow */
   }
 
-  button:hover {
-    background-color: #45a049;
+  .buttons button:hover {
+    transform: scale(1.1);
+    background: rgba(0, 255, 255, 0.2); /* Cyan tint on hover */
+    box-shadow: 0 0 15px #00ffff; /* Cyan glow */
   }
 
   .results, .score {
@@ -44,10 +87,22 @@ body {
 
   .results {
     min-height: 60px;
-    border: 1px solid #ddd;
+    background-color: #f7e442;
+    font-size: 19px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
   }
 
   .score {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 19px;
+    color: #f8f41e;
+    text-shadow: 0 0 1.4px rgb(236, 240, 18); /* Glow effect */
+    background-color: rgba(0, 0, 0, 0.3); /* Slightly dark background */
+    padding: 10px 15px;
+    border: 1px solid #beef00; /* Neon border */
   }

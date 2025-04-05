@@ -45,13 +45,13 @@ function playRound(humanChoice) {
 
     // Update UI
     resultsDiv.textContent = result;
-    scoreDiv.textContent = `Score: You ${humanScore} - ${computerScore} Computer`;
+    scoreDiv.textContent = `Score : You ${humanScore} | Computer ${computerScore} `;
 
     // Check for game winner
     if (humanScore >= winningScore) {
-        resultsDiv.textContent = "Congratulations! You won the game!";
+        resultsDiv.textContent = "Congratulations! You won the game! 🏆";
     } else if (computerScore >= winningScore) {
-        resultsDiv.textContent = "Game over! Computer won the game!";
+        resultsDiv.textContent = "Game over! Computer won the game! 😢";
     }
 }
 
