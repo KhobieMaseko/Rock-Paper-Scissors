@@ -1,75 +1,61 @@
-// script for the main page
+// Rock, Paper, Scissors script file
 
-// 3. Declare the players score variables
+// Game state
 let humanScore = 0;
 let computerScore = 0;
+const winningScore = 5;
 
-// 1. logic to get the computer choice
-// getComputerChoice will randomly return one of the following string values: “rock”, “paper” or “scissors”.
+// Get DOM elements
+const rockBtn = document.getElementById('rock');
+const paperBtn = document.getElementById('paper');
+const scissorsBtn = document.getElementById('scissors');
+const resultsDiv = document.getElementById('results');
+const scoreDiv = document.getElementById('score');
+
+// Returns random computer choice
 function getComputerChoice() {
-    const randomNum = Math.floor(Math.random() * 3); // Generates 0, 1, or 2
-
-    if (randomNum === 0)
-    {
-        return "rock";
-    }
-    else if (randomNum === 1)
-    {
-        return "paper";
-    }
-    else
-    {
-        return "scissors";
-    }
+    const randomNum = Math.floor(Math.random() * 3);
+    if (randomNum === 0) return "rock";
+    if (randomNum === 1) return "paper";
+    return "scissors";
 }
 
-// 2. logic to get the human choice
-// function that takes the user choice and returns it.
-// For now, just assume the user will always enter a valid choice.
+// Plays one round and updates game state
+function playRound(humanChoice) {
+    // Don't continue if game is already won
+    if (humanScore >= winningScore || computerScore >= winningScore) return;
 
-function getHumanChoice() {
-    return prompt("Choose rock, paper, or scissors:").toLowerCase();
-}
+    const computerChoice = getComputerChoice();
+    let result;
 
-
-
-// 4. logic to play a single round
-function playRound(humanChoice, computerChoice) {
+    // Determine winner and update scores
     if (humanChoice === computerChoice) {
-        return "It's a tie!";
-    }
-    else if (humanChoice === "rock" && computerChoice === "scissors")
-    {
+        result = "It's a tie!";
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
         humanScore++;
-        return "You win! Rock beats scissors.";
-    }
-    else if (humanChoice === "paper" && computerChoice === "rock")
-    {
-        humanScore++;
-        return "You win! Paper beats rock.";
-    }
-    else if (humanChoice === "scissors" && computerChoice === "paper")
-    {
-        humanScore++;
-        return "You win! Scissors beats paper.";
-    }
-    else
-    {
+        result = `You win! ${humanChoice} beats ${computerChoice}.`;
+    } else {
         computerScore++;
-        return "You lose! " + computerChoice + " beats " + humanChoice + ".";
+        result = `You lose! ${computerChoice} beats ${humanChoice}.`;
+    }
+
+    // Update UI
+    resultsDiv.textContent = result;
+    scoreDiv.textContent = `Score: You ${humanScore} - ${computerScore} Computer`;
+
+    // Check for game winner
+    if (humanScore >= winningScore) {
+        resultsDiv.textContent = "Congratulations! You won the game!";
+    } else if (computerScore >= winningScore) {
+        resultsDiv.textContent = "Game over! Computer won the game!";
     }
 }
 
-// 5. logic to play the entire game for five rounds
-function playGame() {
-    for (let i = 0; i < 5; i++)
-    {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-        console.log(playRound(humanChoice, computerChoice));
-    }
-    console.log("Final score || You: " + humanScore + " || " + "Computer: " + computerScore);
-}
-
-// 6. Call playGame function to start the game
-playGame();
+// Button event listeners
+rockBtn.addEventListener('click', () => playRound('rock'));
+paperBtn.addEventListener('click', () => playRound('paper'));
+scissorsBtn.addEventListener('click', () => playRound('scissors'));
